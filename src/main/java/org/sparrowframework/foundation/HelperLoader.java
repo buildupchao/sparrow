@@ -1,8 +1,8 @@
 package org.sparrowframework.foundation;
 
-import org.sparrowframework.foundation.core.ClassHelper;
 import org.sparrowframework.foundation.ioc.BeanHelper;
 import org.sparrowframework.foundation.ioc.IocHelper;
+import org.sparrowframework.foundation.mvc.ControllerHelper;
 import org.sparrowframework.foundation.util.ClassUtil;
 
 /**
@@ -15,7 +15,8 @@ public final class HelperLoader {
     public static void init() {
         Class<?>[] classList = {
                 BeanHelper.class,
-                IocHelper.class
+                IocHelper.class,
+                ControllerHelper.class
         };
         for (Class<?> cls : classList) {
             ClassUtil.loadClass(cls.getName());
