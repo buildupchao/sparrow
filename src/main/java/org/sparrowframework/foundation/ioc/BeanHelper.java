@@ -14,31 +14,31 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BeanHelper {
 
-	private static final Map<Class<?>, Object> BEAN_Map = new ConcurrentHashMap<>();
+	private static final Map<Class<?>, Object> BEAN_MAP = new ConcurrentHashMap<>();
 
     static {
         Set<Class<?>> beanClassSet = ClassHelper.getBeanClassSet();
         for (Class<?> beanClass : beanClassSet) {
             Object instance = ReflectionUtil.newInstance(beanClass);
-            BEAN_Map.put(beanClass, instance);
+            BEAN_MAP.put(beanClass, instance);
         }
     }
 
     public static Map<Class<?>, Object> getBeanMap() {
-        return BEAN_Map;
+        return BEAN_MAP;
     }
 
     public static <T> T getBean(Class<?> cls) {
-        if (!BEAN_Map.containsKey(cls)) {
+        if (!BEAN_MAP.containsKey(cls)) {
             throw new RuntimeException("cannot get bean by class: " + cls);
         }
-        return (T) BEAN_Map.get(cls);
+        return (T) BEAN_MAP.get(cls);
     }
 
     public static void setBean(Class<?> cls, Object instance) {
         if (cls == null || instance == null) {
             return;
         }
-        BEAN_Map.put(cls, instance);
+        BEAN_MAP.put(cls, instance);
     }
 }
