@@ -19,7 +19,7 @@ public class CodecUtil {
     public static String decodeURL(String source) {
         String target = null;
         try {
-            target = URLDecoder.decode(source, Constants.DEFAULT_URL_CHARSET);
+            target = URLDecoder.decode(source, Constants.DEFAULT_CHARSET);
         } catch (Exception ex) {
             LOGGER.error("decode url failure", ex);
             throw new RuntimeException(ex);
@@ -30,7 +30,7 @@ public class CodecUtil {
     public static String encodeURL(String source) {
         String target = null;
         try {
-            target = URLEncoder.encode(source, Constants.DEFAULT_URL_CHARSET);
+            target = URLEncoder.encode(source, Constants.DEFAULT_CHARSET);
         } catch (Exception ex) {
             LOGGER.error("encode url failure", ex);
             throw new RuntimeException(ex);
