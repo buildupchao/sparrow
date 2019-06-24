@@ -28,7 +28,7 @@ public interface ClassScanner {
 	/**
 	 * Get all class these extends some class under the package.
 	 * @param packageName
-	 * @param parentClass
+	 * @param superClass
 	 * @return
 	 */
 	Set<Class<?>> getClassSetBySuperClass(String packageName, Class<?> superClass);

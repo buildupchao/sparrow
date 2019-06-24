@@ -11,7 +11,7 @@ import org.sparrowframework.foundation.util.PropertiesUtil;
  * @date 2019/06/24 16:14
  * @since JDK 1.8
  */
-public class ConfigHelper {
+public final class ConfigHelper {
 
 	private static final Properties properties = PropertiesUtil.loadProperties(Constants.FRAMEWORK_CONFIG_FILE);
 	

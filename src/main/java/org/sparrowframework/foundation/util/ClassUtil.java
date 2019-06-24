@@ -1,5 +1,8 @@
 package org.sparrowframework.foundation.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author buildupchao
  * @date 2019/06/19 17:01
@@ -7,20 +10,24 @@ package org.sparrowframework.foundation.util;
  */
 public class ClassUtil {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ClassUtil.class);
 	
 	public static ClassLoader getClassLoader() {
 		return Thread.currentThread().getContextClassLoader();
 	}
 	
-	public static Class<?> loadClass(String className) throws ClassNotFoundException {
-		return loadClass(className, true, getClassLoader());
+	public static Class<?> loadClass(String className) {
+		return loadClass(className, true);
 	}
 	
-	public static Class<?> loadClass(String className, ClassLoader classLoader) throws ClassNotFoundException {
-		return loadClass(className, true, classLoader);
-	}
-	
-	public static Class<?> loadClass(String className, boolean initialize, ClassLoader classLoader) throws ClassNotFoundException {
-		return Class.forName(className, initialize, classLoader);
+	public static Class<?> loadClass(String className, boolean initialize) {
+		Class<?> cls = null;
+		try {
+			cls = Class.forName(className, initialize, getClassLoader());
+		} catch (ClassNotFoundException ex) {
+			LOGGER.error("load class failure", ex);
+			throw new RuntimeException(ex);
+		}
+		return cls;
 	}
 }

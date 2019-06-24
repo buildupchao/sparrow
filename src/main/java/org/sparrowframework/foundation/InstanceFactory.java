@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.commons.lang3.StringUtils;
 import org.sparrowframework.foundation.constant.Constants;
 import org.sparrowframework.foundation.core.ClassScanner;
+import org.sparrowframework.foundation.core.ConfigHelper;
 import org.sparrowframework.foundation.core.impl.DefaultClassScanner;
 import org.sparrowframework.foundation.util.ObjectUtil;
 
@@ -28,11 +29,11 @@ public class InstanceFactory {
 			return (T) INSTANCE_CACHE.get(cacheKey);
 		}
 		
-		String implClassName = "";
+		String implClassName = ConfigHelper.getString(cacheKey);
 		if (StringUtils.isBlank(implClassName)) {
 			implClassName = defaultImplClass.getName();
 		}
-		
+
 		T instance = ObjectUtil.newInstance(implClassName);
 		if (instance != null) {
 			INSTANCE_CACHE.put(cacheKey, instance);

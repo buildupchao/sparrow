@@ -14,18 +14,18 @@ import org.sparrowframework.foundation.constant.Constants;
  * @date 2019/06/24 18:35
  * @since JDK 1.8
  */
-public class ClassHelper {
-	
+public final class ClassHelper {
+
 	private static final Set<Class<?>> CLASS_SET;
-	
+
 	private static final ClassScanner CLASS_SCANNER;
-	
+
 	static {
 		String basePackage = ConfigHelper.getString(Constants.APP_BASE_PACKAGE);
 		CLASS_SCANNER = InstanceFactory.getClassScanner();
 		CLASS_SET = CLASS_SCANNER.getClassSet(basePackage);
 	}
-	
+
 	public static Set<Class<?>> getClassSet() {
 		return CLASS_SET;
 	}

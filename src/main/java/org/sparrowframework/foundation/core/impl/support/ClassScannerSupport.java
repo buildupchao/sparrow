@@ -39,7 +39,7 @@ public abstract class ClassScannerSupport {
 				URL url = urls.nextElement();
 				String protocol = url.getProtocol();
 
-				if ("file".equals("protocol")) {
+				if ("file".equals(protocol)) {
 					String packagePath = url.getPath().replaceAll("%20", " ");
 					addClass(classSet, packagePath, packageName);
 				} else if ("jar".equals(protocol)) {
@@ -73,7 +73,7 @@ public abstract class ClassScannerSupport {
 			String fileName = file.getName();
 			if (file.isFile()) {
 				String className = fileName.substring(0, fileName.lastIndexOf("."));
-				if (StringUtils.isNoneBlank(packageName) && StringUtils.isNoneBlank(className)) {
+				if (StringUtils.isNoneBlank(packageName)) {
 					className = packageName + "." + className;
 				}
 				doAddClass(classSet, className);

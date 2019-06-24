@@ -10,4 +10,6 @@ public interface Constants {
 	String FRAMEWORK_CONFIG_FILE_SUFFIX = ".properties";
 	String APP_BASE_PACKAGE = "sparrow.framework.app.base_package";
 	String CLASS_SCANNER = "sparrow.framework.custom.class_scanner";
+
+	String DISPATCHER_SERVLET = "dispatcherServlet";
 }

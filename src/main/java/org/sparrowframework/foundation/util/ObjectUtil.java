@@ -18,7 +18,7 @@ public class ObjectUtil {
 		try {
 			Class<T> commandClass = (Class<T>) ClassUtil.loadClass(className);
 			instance = commandClass.newInstance();
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+		} catch (InstantiationException | IllegalAccessException ex) {
 			LOGGER.error("Create instance for className={} error!", ex);
 			throw new RuntimeException(ex);
 		}
