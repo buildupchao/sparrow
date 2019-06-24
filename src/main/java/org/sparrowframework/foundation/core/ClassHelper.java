@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.sparrowframework.foundation.InstanceFactory;
+import org.sparrowframework.foundation.annotation.Component;
 import org.sparrowframework.foundation.annotation.Controller;
 import org.sparrowframework.foundation.annotation.Service;
 import org.sparrowframework.foundation.constant.Constants;
@@ -57,9 +58,14 @@ public final class ClassHelper {
 	public static Set<Class<?>> getServiceClassSet() {
 		return getClassSetByAnnotation(Service.class);
 	}
+
+	public static Set<Class<?>> getComponentClassSet() {
+		return getClassSetByAnnotation(Component.class);
+	}
 	
 	public static Set<Class<?>> getBeanClassSet() {
 		Set<Class<?>> beanClassSet = new HashSet<>();
+		beanClassSet.addAll(getComponentClassSet());
 		beanClassSet.addAll(getServiceClassSet());
 		beanClassSet.addAll(getControllerClassSet());
 		return beanClassSet;

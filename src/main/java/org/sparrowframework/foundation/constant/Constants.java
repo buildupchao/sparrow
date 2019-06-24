@@ -12,4 +12,11 @@ public interface Constants {
 	String CLASS_SCANNER = "sparrow.framework.custom.class_scanner";
 
 	String DISPATCHER_SERVLET = "dispatcherServlet";
+	enum MethodType {
+		POST, GET, PUT, DELETE, HEAD
+	}
+	String DEFAULT_CHARSET = "UTF-8";
+	String DEFAULT_CONTENT_TYPE = "application/json";
+	String URL_PARAM_SEPARATOR = "&";
+	String KEY_VALUE_PAIR_SEPARATOR = "=";
 }

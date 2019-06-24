@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2019-06-24 19:53
  * @since JDK 1.8
  */
-public class IocHelper {
+public final class IocHelper {
 
     static {
         Map<Class<?>, Object> beanMap = BeanHelper.getBeanMap();
