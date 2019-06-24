@@ -1,7 +1,7 @@
 package org.sparrowframework.foundation.core.impl;
 
 import java.lang.annotation.Annotation;
-import java.util.List;
+import java.util.Set;
 
 import org.sparrowframework.foundation.core.ClassScanner;
 import org.sparrowframework.foundation.core.impl.support.AnnotationClassScannerSupport;
@@ -19,7 +19,7 @@ public class DefaultClassScanner implements ClassScanner {
 	 * @see org.sparrowframework.foundation.core.ClassScanner#getClassList(java.lang.String)
 	 */
 	@Override
-	public List<Class<?>> getClassList(String packageName) {
+	public Set<Class<?>> getClassSet(String packageName) {
 		return new ClassScannerSupport(packageName) {
 			@Override
 			public boolean checkIfAddClass(Class<?> cls) {
@@ -27,33 +27,33 @@ public class DefaultClassScanner implements ClassScanner {
 				String holdPackageName = className.substring(0, className.lastIndexOf("."));
 				return holdPackageName.startsWith(packageName);
 			}
-		}.getClassList();
+		}.getClassSet();
 	}
 
 	/*
 	 * @see org.sparrowframework.foundation.core.ClassScanner#getClassListByAnnotation(java.lang.String, java.lang.Class)
 	 */
 	@Override
-	public List<Class<?>> getClassListByAnnotation(String packageName, Class<? extends Annotation> annotationClass) {
+	public Set<Class<?>> getClassSetByAnnotation(String packageName, Class<? extends Annotation> annotationClass) {
 		return new AnnotationClassScannerSupport(packageName, annotationClass) {
 			@Override
 			public boolean checkIfAddClass(Class<?> cls) {
 				return cls.isAnnotationPresent(annotationClass);
 			}
-		}.getClassList();
+		}.getClassSet();
 	}
 
 	/* 
 	 * @see org.sparrowframework.foundation.core.ClassScanner#getClassListByParentClass(java.lang.String, java.lang.Class)
 	 */
 	@Override
-	public List<Class<?>> getClassListBySuperClass(String packageName, Class<?> superClass) {
+	public Set<Class<?>> getClassSetBySuperClass(String packageName, Class<?> superClass) {
 		return new SuperClassScannerSupport(packageName, superClass) {
 			@Override
 			public boolean checkIfAddClass(Class<?> cls) {
 				return superClass.isAssignableFrom(cls) && !superClass.equals(cls);
 			}
-		}.getClassList();
+		}.getClassSet();
 	}
 
 }

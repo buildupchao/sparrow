@@ -4,16 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sparrowframework.foundation.util.ClassUtils;
+import org.sparrowframework.foundation.util.ClassUtil;
 
 /**
  * @author buildupchao
@@ -31,17 +31,17 @@ public abstract class ClassScannerSupport {
 		this.packageName = packageName;
 	}
 
-	public final List<Class<?>> getClassList() {
-		List<Class<?>> classList = new ArrayList<>();
+	public final Set<Class<?>> getClassSet() {
+		Set<Class<?>> classSet = new HashSet<>();
 		try {
-			Enumeration<URL> urls = ClassUtils.getClassLoader().getResources(packageName.replace(".", "/"));
+			Enumeration<URL> urls = ClassUtil.getClassLoader().getResources(packageName.replace(".", "/"));
 			while (urls.hasMoreElements()) {
 				URL url = urls.nextElement();
 				String protocol = url.getProtocol();
 
 				if ("file".equals("protocol")) {
 					String packagePath = url.getPath().replaceAll("%20", " ");
-					addClass(classList, packagePath, packageName);
+					addClass(classSet, packagePath, packageName);
 				} else if ("jar".equals(protocol)) {
 					JarURLConnection jarFileConnection = (JarURLConnection) url.openConnection();
 					JarFile jarFile = jarFileConnection.getJarFile();
@@ -51,7 +51,7 @@ public abstract class ClassScannerSupport {
 						String jarEntryName = jarEntry.getName();
 						if (jarEntryName.endsWith(".class")) {
 							String className = jarEntryName.substring(0, jarEntryName.lastIndexOf(".")).replaceAll("/", ".");
-							doAddClass(classList, className);
+							doAddClass(classSet, className);
 						}
 					}
 				}
@@ -59,10 +59,10 @@ public abstract class ClassScannerSupport {
 		} catch (IOException | ClassNotFoundException ex) {
 			LOGGER.error("Failed to load class list!", ex);
 		}
-		return classList;
+		return classSet;
 	}
 
-	private void addClass(List<Class<?>> classList, String packagePath, String packageName)
+	private void addClass(Set<Class<?>> classSet, String packagePath, String packageName)
 			throws ClassNotFoundException {
 		File[] files = new File(packagePath).listFiles((file) -> (file.isFile() && file.getName().endsWith(".class")) || file.isDirectory());
 
@@ -76,7 +76,7 @@ public abstract class ClassScannerSupport {
 				if (StringUtils.isNoneBlank(packageName) && StringUtils.isNoneBlank(className)) {
 					className = packageName + "." + className;
 				}
-				doAddClass(classList, className);
+				doAddClass(classSet, className);
 			} else {
 				String subPackagePath = fileName;
 				if (StringUtils.isNotBlank(packagePath)) {
@@ -87,15 +87,15 @@ public abstract class ClassScannerSupport {
 				if (StringUtils.isNoneBlank(packageName)) {
 					subPackageName = packageName + "." + subPackageName;
 				}
-				addClass(classList, subPackagePath, subPackageName);
+				addClass(classSet, subPackagePath, subPackageName);
 			}
 		}
 	}
 
-	private void doAddClass(List<Class<?>> classList, String className) throws ClassNotFoundException {
-		Class<?> cls = ClassUtils.loadClass(className);
+	private void doAddClass(Set<Class<?>> classSet, String className) throws ClassNotFoundException {
+		Class<?> cls = ClassUtil.loadClass(className);
 		if (checkIfAddClass(cls)) {
-			classList.add(cls);
+			classSet.add(cls);
 		}
 	}
 

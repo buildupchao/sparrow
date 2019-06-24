@@ -5,7 +5,7 @@ package org.sparrowframework.foundation.util;
  * @date 2019/06/19 17:01
  * @since JDK 1.8
  */
-public class ClassUtils {
+public class ClassUtil {
 
 	
 	public static ClassLoader getClassLoader() {

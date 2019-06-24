@@ -1,7 +1,7 @@
 package org.sparrowframework.foundation.core;
 
 import java.lang.annotation.Annotation;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author buildupchao
@@ -15,7 +15,7 @@ public interface ClassScanner {
 	 * @param packageName
 	 * @return
 	 */
-	List<Class<?>> getClassList(String packageName);
+	Set<Class<?>> getClassSet(String packageName);
 	
 	/**
 	 * Get all class with Annotation under the package.
@@ -23,7 +23,7 @@ public interface ClassScanner {
 	 * @param annotationClass
 	 * @return
 	 */
-	List<Class<?>> getClassListByAnnotation(String packageName, Class<? extends Annotation> annotationClass);
+	Set<Class<?>> getClassSetByAnnotation(String packageName, Class<? extends Annotation> annotationClass);
 
 	/**
 	 * Get all class these extends some class under the package.
@@ -31,5 +31,5 @@ public interface ClassScanner {
 	 * @param parentClass
 	 * @return
 	 */
-	List<Class<?>> getClassListBySuperClass(String packageName, Class<?> superClass);
+	Set<Class<?>> getClassSetBySuperClass(String packageName, Class<?> superClass);
 }
