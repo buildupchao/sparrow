@@ -4,6 +4,8 @@ import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sparrowframework.foundation.constant.Constants;
 import org.sparrowframework.foundation.mvc.servlet.DispatcherServlet;
 
@@ -14,6 +16,8 @@ import org.sparrowframework.foundation.mvc.servlet.DispatcherServlet;
  */
 public class TomcatServer {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(TomcatServer.class);
+	
     private Tomcat tomcat;
     private String[] args;
 
@@ -43,5 +47,7 @@ public class TomcatServer {
         };
         awaitThread.setDaemon(false);
         awaitThread.start();
+        
+        LOGGER.info("start tomcat server at port {}", 8000);
     }
 }

@@ -41,6 +41,8 @@ public final class ControllerHelper {
                         Request request = new Request(methodType, requestPath);
                         Handler handler = new Handler(controllerClass, method);
                         REQUEST_HANDLER_MAP.put(request, handler);
+                        
+                        LOGGER.info("init {}:{}", methodType, requestPath);
                     }
                 }
             }

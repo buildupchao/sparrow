@@ -32,7 +32,9 @@ import java.util.Map;
 @WebServlet(urlPatterns = "/*", loadOnStartup = 0)
 public class DispatcherServlet extends HttpServlet {
 
-    @Override
+	private static final long serialVersionUID = 6676267414678587154L;
+
+	@Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
@@ -42,20 +44,20 @@ public class DispatcherServlet extends HttpServlet {
         super.service(req, resp);
 
         String requestMethod = req.getMethod().toUpperCase();
-        String requestPath = req.getPathInfo();
+        String requestPath = req.getRequestURI();
 
         Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
         if (handler != null) {
-            Class controllerClass = handler.getControllerClass();
+            Class<?> controllerClass = handler.getControllerClass();
             Object controllerBean = BeanHelper.getBean(controllerClass);
+            Method controllerMethod = handler.getControllerMethod();
             Param param = fetchParameters(req);
 
             Object result = null;
-            Method controllerMethod = handler.getControllerMethod();
             if (param.isEmpty()) {
                 result = ReflectionUtil.invokeMethod(controllerBean, controllerMethod);
             } else {
-                result = ReflectionUtil.invokeMethod(controllerBean, controllerMethod, param);
+                result = ReflectionUtil.invokeMethodQuickly(controllerBean, controllerMethod, param);
             }
 
             resp.setCharacterEncoding(Constants.DEFAULT_CHARSET);

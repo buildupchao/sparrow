@@ -10,11 +10,11 @@ import java.lang.annotation.*;
  * @since JDK 1.8
  */
 @Documented
-@Target(ElementType.FIELD)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequestMapping {
 
     String value() default "";
 
-    Constants.MethodType method() default Constants.MethodType.POST;
+    Constants.MethodType method() default Constants.MethodType.GET;
 }

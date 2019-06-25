@@ -37,9 +37,20 @@ public class ReflectionUtil {
     public static Object invokeMethod(Object obj, Method method, Object... args) {
         Object result = null;
         try {
-            method.setAccessible(true);
             result = MethodUtils.invokeMethod(obj, true, method.getName(), args);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            LOGGER.error("invoke method failure", e);
+            throw new RuntimeException(e);
+        }
+        return result;
+    }
+    
+    public static Object invokeMethodQuickly(Object obj, Method method, Object... args) {
+        Object result = null;
+        try {
+            method.setAccessible(true);
+            result = method.invoke(obj, args);
+        } catch (Exception e) {
             LOGGER.error("invoke method failure", e);
             throw new RuntimeException(e);
         }
