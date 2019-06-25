@@ -39,11 +39,11 @@ public class DispatcherServlet extends HttpServlet {
         String requestMethod = request.getMethod().toUpperCase();
         String requestPath = WebUtil.getRequestPath(request);
 
-        if (requestPath.equals("/")) {
+        if (requestPath.equals(Constants.PATH_SEPARATOR)) {
         	WebUtil.redirectRequest(Constants.PAGE_HOME, request, response);
         	return;
         }
-        if (requestPath.endsWith("/")) {
+        if (requestPath.endsWith(Constants.PATH_SEPARATOR)) {
         	requestPath = requestPath.substring(0, requestPath.length() - 1);
         }
         

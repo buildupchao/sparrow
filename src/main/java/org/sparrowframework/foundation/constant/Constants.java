@@ -31,4 +31,5 @@ public interface Constants {
 	String URL_PARAM_SEPARATOR = "&";
 	String KEY_VALUE_PAIR_SEPARATOR = "=";
 	String PARAMETER_SEPARATOR = String.valueOf((char) 29);
+	String PATH_SEPARATOR = "/";
 }
