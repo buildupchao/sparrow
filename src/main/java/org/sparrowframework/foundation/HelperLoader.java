@@ -1,5 +1,6 @@
 package org.sparrowframework.foundation;
 
+import org.sparrowframework.foundation.aop.AopHelper;
 import org.sparrowframework.foundation.ioc.BeanHelper;
 import org.sparrowframework.foundation.ioc.IocHelper;
 import org.sparrowframework.foundation.mvc.ControllerHelper;
@@ -15,6 +16,7 @@ public final class HelperLoader {
     public static void init() {
         Class<?>[] classList = {
                 BeanHelper.class,
+                AopHelper.class,
                 IocHelper.class,
                 ControllerHelper.class
         };
