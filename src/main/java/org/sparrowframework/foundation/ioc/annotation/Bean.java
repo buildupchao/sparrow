@@ -1,4 +1,4 @@
-package org.sparrowframework.foundation.annotation;
+package org.sparrowframework.foundation.ioc.annotation;
 
 import java.lang.annotation.*;
 
@@ -10,6 +10,6 @@ import java.lang.annotation.*;
 @Documented
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Component {
+public @interface Bean {
 
 }

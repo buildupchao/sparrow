@@ -2,7 +2,7 @@ package org.sparrowframework.foundation.ioc;
 
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
-import org.sparrowframework.foundation.annotation.Autowired;
+import org.sparrowframework.foundation.ioc.annotation.Autowired;
 import org.sparrowframework.foundation.util.ReflectionUtil;
 
 import java.lang.reflect.Field;

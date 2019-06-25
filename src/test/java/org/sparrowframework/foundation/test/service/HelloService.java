@@ -1,6 +1,6 @@
 package org.sparrowframework.foundation.test.service;
 
-import org.sparrowframework.foundation.annotation.Service;
+import org.sparrowframework.foundation.tx.annotation.Service;
 
 /**
  * @author buildupchao

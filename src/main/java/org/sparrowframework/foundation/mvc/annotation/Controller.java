@@ -1,4 +1,4 @@
-package org.sparrowframework.foundation.annotation;
+package org.sparrowframework.foundation.mvc.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -8,12 +8,12 @@ import java.lang.annotation.Target;
 
 /**
  * @author buildupchao
- * @date 2019/06/24 17:37
+ * @date 2019/06/24 17:36
  * @since JDK 1.8
  */
 @Documented
-@Target(ElementType.FIELD)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Autowired {
-	
+public @interface Controller {
+	String value() default "";
 }

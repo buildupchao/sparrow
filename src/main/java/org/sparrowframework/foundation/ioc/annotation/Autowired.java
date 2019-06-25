@@ -1,4 +1,4 @@
-package org.sparrowframework.foundation.annotation;
+package org.sparrowframework.foundation.ioc.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -12,8 +12,8 @@ import java.lang.annotation.Target;
  * @since JDK 1.8
  */
 @Documented
-@Target(ElementType.TYPE)
+@Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Service {
+public @interface Autowired {
 	
 }

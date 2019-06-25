@@ -1,7 +1,7 @@
 package org.sparrowframework.foundation.test.controller;
 
-import org.sparrowframework.foundation.annotation.Autowired;
-import org.sparrowframework.foundation.annotation.Controller;
+import org.sparrowframework.foundation.ioc.annotation.Autowired;
+import org.sparrowframework.foundation.mvc.annotation.Controller;
 import org.sparrowframework.foundation.test.service.HelloService;
 
 /**

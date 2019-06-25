@@ -1,4 +1,4 @@
-package org.sparrowframework.foundation.annotation;
+package org.sparrowframework.foundation.mvc.annotation;
 
 import org.sparrowframework.foundation.constant.Constants;
 
