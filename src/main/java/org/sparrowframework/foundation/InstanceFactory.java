@@ -8,6 +8,12 @@ import org.sparrowframework.foundation.constant.Constants;
 import org.sparrowframework.foundation.core.ClassScanner;
 import org.sparrowframework.foundation.core.ConfigHelper;
 import org.sparrowframework.foundation.core.impl.DefaultClassScanner;
+import org.sparrowframework.foundation.mvc.HandlerExceptionResolver;
+import org.sparrowframework.foundation.mvc.HandlerInvoker;
+import org.sparrowframework.foundation.mvc.HandlerMapping;
+import org.sparrowframework.foundation.mvc.impl.DefaultHandlerExceptionResolver;
+import org.sparrowframework.foundation.mvc.impl.DefaultHandlerInvoker;
+import org.sparrowframework.foundation.mvc.impl.DefaultHandlerMapping;
 import org.sparrowframework.foundation.util.ObjectUtil;
 
 /**
@@ -21,6 +27,18 @@ public class InstanceFactory {
 	
 	public static ClassScanner getClassScanner() {
 		return getInstance(Constants.CLASS_SCANNER, DefaultClassScanner.class);
+	}
+	
+	public static HandlerMapping getHandlerMapping() {
+		return getInstance(Constants.HANDLER_MAPPING, DefaultHandlerMapping.class);
+	}
+	
+	public static HandlerInvoker getHandlerInvoker() {
+		return getInstance(Constants.HANDLER_INVOKER, DefaultHandlerInvoker.class);
+	}
+	
+	public static HandlerExceptionResolver getHandlerExceptionResolver() {
+		return getInstance(Constants.HANDLER_EXCEPTION_RESOLVER, DefaultHandlerExceptionResolver.class);
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -7,7 +7,7 @@ import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sparrowframework.foundation.constant.Constants;
-import org.sparrowframework.foundation.mvc.servlet.DispatcherServlet;
+import org.sparrowframework.foundation.mvc.DispatcherServlet;
 
 /**
  * @author buildupchao

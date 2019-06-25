@@ -28,4 +28,8 @@ public class Param {
     public Map<String, Object> getParamMap() {
         return paramMap;
     }
+    
+    public Object getParam(String name) {
+    	return paramMap.get(name);
+    }
 }

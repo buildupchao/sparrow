@@ -34,4 +34,20 @@ public class ParamUtil {
         }
         return value;
     }
+    
+    public static boolean isInt(Class<?> type) {
+    	return type.equals(int.class) || type.equals(Integer.class);
+    }
+    
+    public static boolean isLong(Class<?> type) {
+    	return type.equals(long.class) || type.equals(Long.class);
+    }
+    
+    public static boolean isDouble(Class<?> type) {
+    	return type.equals(double.class) || type.equals(Double.class);
+    }
+    
+    public static boolean isString(Class<?> type) {
+    	return type.equals(String.class);
+    }
 }

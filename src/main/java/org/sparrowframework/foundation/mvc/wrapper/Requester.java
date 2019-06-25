@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class Request {
+public class Requester {
     private String requestMethod;
     private String requestPath;
 }
