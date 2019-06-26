@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sparrowframework.foundation.InstanceFactory;
 import org.sparrowframework.foundation.constant.Constants;
 import org.sparrowframework.foundation.mvc.wrapper.Handler;
@@ -20,6 +22,8 @@ import org.sparrowframework.foundation.util.WebUtil;
  * @since JDK 1.8
  */
 public class DispatcherServlet extends HttpServlet {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
 
 	private static final long serialVersionUID = 6676267414678587154L;
 
@@ -38,6 +42,7 @@ public class DispatcherServlet extends HttpServlet {
 
         String requestMethod = request.getMethod().toUpperCase();
         String requestPath = WebUtil.getRequestPath(request);
+        LOGGER.debug("[Sparrow Dispatcher] {}:{}", requestMethod, requestPath);
 
         if (requestPath.equals(Constants.PATH_SEPARATOR)) {
         	WebUtil.redirectRequest(Constants.PAGE_HOME, request, response);

@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sparrowframework.foundation.core.ClassHelper;
+import org.sparrowframework.foundation.mvc.annotation.Controller;
 import org.sparrowframework.foundation.mvc.annotation.RequestMapping;
 import org.sparrowframework.foundation.mvc.wrapper.Handler;
 import org.sparrowframework.foundation.mvc.wrapper.Requester;
@@ -63,6 +64,10 @@ public final class ControllerHelper {
             RequestMapping requestMapping = controllerMethod.getAnnotation(RequestMapping.class);
             String requestPath = requestMapping.value();
             String methodType = requestMapping.method().name();
+            
+            String basePath = controllerClass.getAnnotation(Controller.class).value();
+            requestPath = StringUtils.isBlank(basePath) ? requestPath : basePath + requestPath;
+            
             putControllerMap(methodType, requestPath, controllerClass, controllerMethod, normalControllerMap, regexControllerMap);
         }
 	}

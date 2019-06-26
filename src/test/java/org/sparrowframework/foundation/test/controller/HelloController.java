@@ -10,7 +10,7 @@ import org.sparrowframework.foundation.test.service.HelloService;
  * @date 2019-06-24 20:52
  * @since JDK 1.8
  */
-@Controller
+@Controller("/ctl")
 public class HelloController {
 
     @Autowired

@@ -42,6 +42,7 @@ public class DefaultHandlerInvoker implements HandlerInvoker {
         Object controllerMethodResult = invokeControllerMethod(controllerMethod, controllerInstance, controllerMethodParamList);
         
         // TODO...
+        WebUtil.writeJson(response, controllerMethodResult);
 	}
 
 	/**
