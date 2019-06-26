@@ -10,6 +10,7 @@ import org.sparrowframework.foundation.core.ConfigHelper;
 public interface Constants {
 	String FRAMEWORK_CONFIG_FILE = "sparrow.properties";
 	String FRAMEWORK_CONFIG_FILE_SUFFIX = ".properties";
+	String APP_SERVER_PORT = "sparrow.framework.app.server.port";
 	String APP_BASE_PACKAGE = "sparrow.framework.app.base_package";
 	String APP_HOME_PAGE = "sparrow.framework.app.home_page";
 	String CLASS_SCANNER = "sparrow.framework.custom.class_scanner";

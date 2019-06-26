@@ -7,6 +7,7 @@ import org.apache.catalina.startup.Tomcat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sparrowframework.foundation.constant.Constants;
+import org.sparrowframework.foundation.core.ConfigHelper;
 import org.sparrowframework.foundation.mvc.DispatcherServlet;
 
 /**
@@ -20,6 +21,7 @@ public class TomcatServer {
 	
     private Tomcat tomcat;
     private String[] args;
+    private static final int SERVER_PORT = ConfigHelper.getInt(Constants.APP_SERVER_PORT, 8000);
 
     public TomcatServer(String[] args) {
         this.args = args;
@@ -27,7 +29,7 @@ public class TomcatServer {
 
     public void startServer() throws LifecycleException {
         tomcat = new Tomcat();
-        tomcat.setPort(8000);
+        tomcat.setPort(SERVER_PORT);
         tomcat.start();
 
         Context context = new StandardContext();
@@ -48,6 +50,6 @@ public class TomcatServer {
         awaitThread.setDaemon(false);
         awaitThread.start();
         
-        LOGGER.info("start tomcat server at port {}", 8000);
+        LOGGER.info("start tomcat server at port {}", SERVER_PORT);
     }
 }
