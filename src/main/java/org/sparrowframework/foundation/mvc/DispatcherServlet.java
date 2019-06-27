@@ -41,31 +41,48 @@ public class DispatcherServlet extends HttpServlet {
         super.service(request, response);
 
         String requestMethod = request.getMethod().toUpperCase();
+        switch (requestMethod) {
+            case "GET": doGet(request, response); break;
+            case "POST": doPost(request, response); break;
+            default: break;
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doTask(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doTask(req, resp);
+    }
+
+    private void doTask(HttpServletRequest request, HttpServletResponse response) {
+        String requestMethod = request.getMethod().toUpperCase();
         String requestPath = WebUtil.getRequestPath(request);
         LOGGER.debug("[Sparrow Dispatcher] {}:{}", requestMethod, requestPath);
 
         if (requestPath.equals(Constants.PATH_SEPARATOR)) {
-        	WebUtil.redirectRequest(Constants.PAGE_HOME, request, response);
-        	return;
+            WebUtil.redirectRequest(Constants.PAGE_HOME, request, response);
+            return;
         }
         if (requestPath.endsWith(Constants.PATH_SEPARATOR)) {
-        	requestPath = requestPath.substring(0, requestPath.length() - 1);
+            requestPath = requestPath.substring(0, requestPath.length() - 1);
         }
-        
+
         Handler handler = handlerMapping.getHandler(requestMethod, requestPath);
         if (handler == null) {
-        	WebUtil.sendError(HttpServletResponse.SC_NOT_FOUND, StringUtils.EMPTY, response);
-        	return;
+            WebUtil.sendError(HttpServletResponse.SC_NOT_FOUND, StringUtils.EMPTY, response);
+            return;
         }
-        
-        try {
-			handlerInvoker.invokeHandler(request, response, handler);
-		} catch (Exception e) {
-			handlerExceptionResolver.resolveHandlerException(request, response, e);
-		} finally {
-			// other handle
-		}
-    }
 
-    
+        try {
+            handlerInvoker.invokeHandler(request, response, handler);
+        } catch (Exception e) {
+            handlerExceptionResolver.resolveHandlerException(request, response, e);
+        } finally {
+            // other handle
+        }
+    }
 }

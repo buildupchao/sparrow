@@ -74,7 +74,7 @@ public final class ControllerHelper {
 	
 	/**
 	 * 
-	 * @param requestMethod
+	 * @param methodType
 	 * @param requestPath
 	 * @param controllerClass
 	 * @param controllerMethod

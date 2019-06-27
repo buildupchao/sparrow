@@ -29,8 +29,7 @@ public class DefaultHandlerInvoker implements HandlerInvoker {
 	 * @see org.sparrowframework.foundation.mvc.HandlerInvoker#invokeHandler(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, org.sparrowframework.foundation.mvc.wrapper.Handler)
 	 */
 	@Override
-	public void invokeHandler(HttpServletRequest request, HttpServletResponse response, Handler handler)
-			throws Exception {
+	public void invokeHandler(HttpServletRequest request, HttpServletResponse response, Handler handler) throws Exception {
 		Class<?> controllerClass = handler.getControllerClass();
 		Method controllerMethod = handler.getControllerMethod();
         Object controllerInstance = BeanHelper.getBean(controllerClass);
@@ -57,10 +56,12 @@ public class DefaultHandlerInvoker implements HandlerInvoker {
 		
 		// will offer upload function in the future
 		// TODO
-		
+
+		// handle Query String & Form Data
 		Map<String, Object> requestParameterMap = WebUtil.getRequestParameterMap(request);
 		if (MapUtils.isNotEmpty(requestParameterMap)) {
-			paramList.add(new Param(requestParameterMap));
+//			paramList.add(new Param(requestParameterMap));
+			paramList.addAll(requestParameterMap.values());
 		}
 		return paramList;
 	}

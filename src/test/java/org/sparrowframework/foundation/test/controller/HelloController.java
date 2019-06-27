@@ -17,7 +17,7 @@ public class HelloController {
     private HelloService helloService;
 
     @RequestMapping(value = "/hello")
-    public void hello(String name) {
-        System.out.println(helloService.hello(name));
+    public String hello(String name, String gender) {
+        return helloService.hello(name) + ":" + gender;
     }
 }

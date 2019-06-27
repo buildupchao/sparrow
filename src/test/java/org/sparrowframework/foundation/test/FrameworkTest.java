@@ -15,6 +15,6 @@ public class FrameworkTest {
         SparrowStarter.run(FrameworkTest.class, args);
 
         HelloController o = (HelloController) BeanHelper.getBean(HelloController.class);
-        o.hello("buildupchao");
+        o.hello("buildupchao", "male");
     }
 }
