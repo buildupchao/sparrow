@@ -36,17 +36,17 @@ public class DispatcherServlet extends HttpServlet {
         super.init(config);
     }
 
-    @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.service(request, response);
-
-        String requestMethod = request.getMethod().toUpperCase();
-        switch (requestMethod) {
-            case "GET": doGet(request, response); break;
-            case "POST": doPost(request, response); break;
-            default: break;
-        }
-    }
+//    @Override
+//    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        super.service(request, response);
+//
+//        String requestMethod = request.getMethod().toUpperCase();
+//        switch (requestMethod) {
+//            case "GET": doGet(request, response); break;
+//            case "POST": doPost(request, response); break;
+//            default: break;
+//        }
+//    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
